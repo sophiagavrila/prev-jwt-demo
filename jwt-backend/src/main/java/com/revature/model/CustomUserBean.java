@@ -15,15 +15,15 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  * org.springframework.security.core.userdetails.UserDetails which provides core
  * user information.
  * 
+ * UserDetails is container for core user information. According to docs, its
+ * implementations are not used directly by Spring Security for security
+ * purposes. They simply store user information which is later encapsulated into
+ * Authentication objects.
+ * 
  * You need to provide a concrete implemetation of this interface to add more
- * fields. There is also a concrete implementation
- * org.springframework.security.core.userdetails.User provided by Spring
- * security that can be used directly.
+ * fields. Later we will implement a UserDetailsService.
  * 
- * Here we are using our own implementation ConcreteUserBean.
- * 
- * @author SophieGavrila
- *
+ * https://howtodoinjava.com/spring-security/custom-userdetailsservice-example-for-spring-3-security/
  */
 
 public class CustomUserBean implements UserDetails {
@@ -83,8 +83,8 @@ public class CustomUserBean implements UserDetails {
 	}
 
 	/**
-	 * change true to false on all of these, they're just defaults for
-	 * the overridden UserDetails interface. 
+	 * change true to false on all of these, they're just defaults for the
+	 * overridden UserDetails interface.
 	 */
 	@Override
 	public boolean isAccountNonExpired() {
