@@ -47,8 +47,9 @@ public class User {
 	 * https://stackoverflow.com/questions/2990799/difference-between-fetchtype-lazy-and-eager-in-java-persistence-api
 	 */
 	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "USER_ID", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "ROLE_ID", referencedColumnName = "ID"))
-
+	@JoinTable(name = "user_role", 
+	joinColumns = @JoinColumn(name = "USER_ID", referencedColumnName = "ID"), 
+	inverseJoinColumns = @JoinColumn(name = "ROLE_ID", referencedColumnName = "ID"))
 	private Set<Role> roles = new HashSet<>();
 
 }
