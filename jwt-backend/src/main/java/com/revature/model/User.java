@@ -3,7 +3,6 @@ package com.revature.model;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.management.relation.Role;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -37,19 +36,17 @@ public class User {
 
 	/**
 	 * User has Many-to-Many relationship with Role, that association is captured
-	 * using the join table user_role. 
+	 * using the join table user_role.
 	 * 
-	 * LAZY loading will load the User's Roles on-demand when we call the getRoles() 
-	 * method.
-	 * EAGER loading would have loaded it together with the rest of the fields 
-	 * whenever we return a User model.
+	 * LAZY loading will load the User's Roles on-demand when we call the getRoles()
+	 * method. EAGER loading would have loaded it together with the rest of the
+	 * fields whenever we return a User model.
 	 * 
 	 * https://stackoverflow.com/questions/2990799/difference-between-fetchtype-lazy-and-eager-in-java-persistence-api
 	 */
 	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "user_role", 
-	joinColumns = @JoinColumn(name = "USER_ID", referencedColumnName = "ID"), 
-	inverseJoinColumns = @JoinColumn(name = "ROLE_ID", referencedColumnName = "ID"))
+	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "USER_ID", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "ROLE_ID", referencedColumnName = "ID"))
 	private Set<Role> roles = new HashSet<>();
+
 
 }

@@ -67,7 +67,8 @@ public class CustomUserBean implements UserDetails {
 	public static CustomUserBean createInstance(User user) {
 		// Here the List of authorities represents all of the Roles that the User has.
 		List<GrantedAuthority> authorities = user.getRoles().stream()
-				.map(role -> new SimpleGrantedAuthority(role.getRoleName())).collect(Collectors.toList());
+				.map(role -> new SimpleGrantedAuthority(role.getRoleName().name()))
+				.collect(Collectors.toList());
 
 		return new CustomUserBean(user.getId(), user.getUserName(), user.getEmail(), user.getPassword(), authorities);
 	}
