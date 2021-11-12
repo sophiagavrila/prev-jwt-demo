@@ -29,7 +29,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		User user = userRepository.findByUserName(username)
-				.orElseThrow(() -> new UsernameNotFoundException("User with " + "user name " + username + " not found"));
+				.orElseThrow(() -> new UsernameNotFoundException("User with username " + username + " not found"));
 
 		/**
 		 * The returned user is passed to the CustomUserBean.createInstance() 
