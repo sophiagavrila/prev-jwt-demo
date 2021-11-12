@@ -68,11 +68,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 		// We don't need CSRF for this example
 		httpSecurity.cors().and().csrf().disable()
-					.exceptionHandling().authenticationEntryPoint(authenticationEntryPoint).and()
-					.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+					.exceptionHandling().authenticationEntryPoint(authenticationEntryPoint)
+				.and()
+					.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+				.and()
 					.authorizeRequests().antMatchers("/auth/**").permitAll()
 					.antMatchers(HttpMethod.GET, "/user/allusers").permitAll()
-					.antMatchers("/h2-console/**").permitAll()
+//					.antMatchers("/h2-console/**").permitAll()
 					.anyRequest().authenticated();
 		
 		httpSecurity.addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);					
